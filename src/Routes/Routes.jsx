@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import Homepage from "../Pages/Homepage/Homepage";
 import Books from "../Pages/Books/Books";
 import BookDetails from "../Pages/BookDetails/BookDetails";
+import NotFound from "../Pages/NotFound/NotFound";
 
 export const router = createBrowserRouter ([
     {
@@ -22,5 +23,9 @@ export const router = createBrowserRouter ([
                 element: <BookDetails></BookDetails>
             }
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound></NotFound>
     }
 ])
