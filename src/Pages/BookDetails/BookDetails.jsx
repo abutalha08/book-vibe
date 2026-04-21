@@ -1,51 +1,36 @@
-
-import { useLoaderData, useParams } from 'react-router';
-import { LibraryContext } from '../../Context/BookContext';
-import { useContext } from 'react';
-
+import { useLoaderData, useParams } from "react-router";
+import { LibraryContext } from "../../Context/BookContext";
+import { useContext } from "react";
 
 // data fetching method 1 ->
 // const booksPromise = fetch("/booksData.json").then(res => res.json());
 
-
-
-
-
 const BookDetails = () => {
-
     // Get dynamic book ID (expectedBookId) from URL using useParams()
     const { expectedBookId } = useParams();
     // console.log(expectedBookId);
 
-
-
-    // Method 1 
+    // Method 1
     // const books = use(booksPromise);
     // console.log(books,"books");
-
-
 
     // data fetching method 2 ->
     const books = useLoaderData();
     // console.log(books,"data fetch using useLoaderData hook");
 
-
-    const expectedBook = books.find(book => book.bookId == Number(expectedBookId));  // Convert expectedBookId (string) to number because JSON bookId is a number
-
+    const expectedBook = books.find(
+        (book) => book.bookId == Number(expectedBookId),
+    ); // Convert expectedBookId (string) to number because JSON bookId is a number
 
     // console.log(expectedBook, "expectedBook");
 
-
-    const { handleMarkAsRead, handleWishList } = useContext(LibraryContext);
+    const { handleMarkAsRead, handleWishList, wishList, readList } =
+        useContext(LibraryContext);
     // console.log(handleMarkAsRead);
-
-
-
 
     return (
         <div className="max-w-11/12 mx-auto p-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
                 {/* Left - Image */}
                 <div className="bg-gray-100 rounded-2xl p-6 flex justify-center">
                     <img
@@ -61,15 +46,11 @@ const BookDetails = () => {
                         {expectedBook.bookName}
                     </h1>
 
-                    <p className="text-gray-500 mb-4">
-                        By : {expectedBook.author}
-                    </p>
+                    <p className="text-gray-500 mb-4">By : {expectedBook.author}</p>
 
                     <hr className="mb-4" />
 
-                    <p className="text-lg font-medium mb-2">
-                        {expectedBook.category}
-                    </p>
+                    <p className="text-lg font-medium mb-2">{expectedBook.category}</p>
 
                     <hr className="mb-4" />
 
@@ -104,7 +85,9 @@ const BookDetails = () => {
                         </p>
                         <p>
                             <span className="text-gray-500">Year of Publishing:</span>{" "}
-                            <span className="font-semibold">{expectedBook.yearOfPublishing}</span>
+                            <span className="font-semibold">
+                                {expectedBook.yearOfPublishing}
+                            </span>
                         </p>
                         <p>
                             <span className="text-gray-500">Rating:</span>{" "}
@@ -114,11 +97,33 @@ const BookDetails = () => {
 
                     {/* Buttons */}
                     <div className="flex gap-4 mt-6">
-                        <button onClick={() => handleMarkAsRead(expectedBook)} className="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition cursor-pointer">
-                            Marked as Read
+                        <button
+                            onClick={() => handleMarkAsRead(expectedBook)}
+                            className={`px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer
+    ${readList.some((b) => b.bookId === expectedBook.bookId)
+                                    ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                                    : "border border-gray-400 hover:bg-gray-100"
+                                }
+  `}
+                        >
+                            {readList.some((b) => b.bookId === expectedBook.bookId)
+                                ? "Marked as Read"
+                                : "Mark as Read"}
                         </button>
-                        <button onClick={() => handleWishList(expectedBook)} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md hover:shadow-lg cursor-pointer">
-                            Wishlist
+                        <button
+                            onClick={() => handleWishList(expectedBook)}
+                            className={`px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer
+                           ${wishList.some(
+                                (b) => b.bookId === expectedBook.bookId,
+                            )
+                                    ? "bg-green-500 text-white"
+                                    : "bg-blue-500 text-white hover:bg-blue-600"
+                                }
+  `}
+                        >
+                            {wishList.some((b) => b.bookId === expectedBook.bookId)
+                                ? "Added to Wishlist"
+                                : "Wishlist"}
                         </button>
                     </div>
                 </div>
