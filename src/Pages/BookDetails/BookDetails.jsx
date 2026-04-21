@@ -1,5 +1,7 @@
 
 import { useLoaderData, useParams } from 'react-router';
+import { LibraryContext } from '../../Context/BookContext';
+import { useContext } from 'react';
 
 
 // data fetching method 1 ->
@@ -13,7 +15,7 @@ const BookDetails = () => {
 
     // Get dynamic book ID (expectedBookId) from URL using useParams()
     const { expectedBookId } = useParams();
-    console.log(expectedBookId);
+    // console.log(expectedBookId);
 
 
 
@@ -32,6 +34,10 @@ const BookDetails = () => {
 
 
     // console.log(expectedBook, "expectedBook");
+
+
+    const { handleMarkAsRead } = useContext(LibraryContext);
+    // console.log(handleMarkAsRead);
 
 
 
@@ -108,8 +114,8 @@ const BookDetails = () => {
 
                     {/* Buttons */}
                     <div className="flex gap-4 mt-6">
-                        <button className="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition cursor-pointer">
-                            Read
+                        <button onClick={() => handleMarkAsRead(expectedBook)} className="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition cursor-pointer">
+                            Marked as Read
                         </button>
                         <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md hover:shadow-lg cursor-pointer">
                             Wishlist
