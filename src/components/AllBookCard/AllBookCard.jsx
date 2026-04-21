@@ -1,11 +1,12 @@
 import React from "react";
 import { FaRegStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const BookCard = ({ book }) => {
   const { image, bookName, author, category, rating, tags } = book;
 
   return (
-    <div className=" rounded-2xl p-4 sm:p-5 bg-white shadow-sm 
+    <Link to={`/bookDetails/${book.bookId}`} className=" rounded-2xl p-4 sm:p-5 bg-white shadow-sm 
     hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer">
 
       {/* Image Section */}
@@ -51,7 +52,7 @@ const BookCard = ({ book }) => {
           <FaRegStar className="text-gray-500" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
