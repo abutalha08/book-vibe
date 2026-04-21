@@ -19,7 +19,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
           }
-          to={"/books"}
+          to={"/listedBooks"}
         >
           Listed Books
         </NavLink>

@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layout/MainLayout";
 import Homepage from "../Pages/Homepage/Homepage";
-import Books from "../Pages/Books/Books";
-import BookDetails from "../Pages/BookDetails/BookDetails";
 import NotFound from "../Pages/NotFound/NotFound";
+import ListedBooks from "../Pages/ListedBooks/ListedBooks";
+import BookDetails from "../Pages/BookDetails/BookDetails";
 
 export const router = createBrowserRouter ([
     {
@@ -15,8 +15,8 @@ export const router = createBrowserRouter ([
                 element : <Homepage></Homepage>
             },
             {
-                path: "/books",
-                element: <Books></Books>
+                path: "/listedBooks",
+                element: <ListedBooks></ListedBooks>
             },
             {
                 path: "/bookDetails",
