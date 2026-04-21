@@ -36,7 +36,7 @@ const BookDetails = () => {
     // console.log(expectedBook, "expectedBook");
 
 
-    const { handleMarkAsRead } = useContext(LibraryContext);
+    const { handleMarkAsRead, handleWishList } = useContext(LibraryContext);
     // console.log(handleMarkAsRead);
 
 
@@ -117,7 +117,7 @@ const BookDetails = () => {
                         <button onClick={() => handleMarkAsRead(expectedBook)} className="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition cursor-pointer">
                             Marked as Read
                         </button>
-                        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md hover:shadow-lg cursor-pointer">
+                        <button onClick={() => handleWishList(expectedBook)} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md hover:shadow-lg cursor-pointer">
                             Wishlist
                         </button>
                     </div>
