@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const LibraryContext = createContext();
 
@@ -22,10 +23,10 @@ const BookContext = ({ children }) => {
             (book) => book.bookId === currentBook.bookId);
 
         if (isExistBook) {
-            alert("This book already exists in the read list!");
+            toast.info("This book already exists in the read list!");
         } else {
             setReadList([...readList, currentBook]);
-            alert(`${currentBook.bookName} is added to read list!`);
+            toast.success(`${currentBook.bookName} is added to read list!`);
         }
 
         // console.log(currentBook, storedBooks, "book");
@@ -43,7 +44,7 @@ const BookContext = ({ children }) => {
         );
 
         if (isExistInReadList) {
-            alert("This book already exits in the read list!");
+            toast.warning("This book already exits in the read list!");
             return;
         }
 
@@ -52,10 +53,10 @@ const BookContext = ({ children }) => {
         );
 
         if (isExistBook) {
-            alert("The book is already exist in wish list!");
+            toast.info("The book is already exist in wish list!");
         } else {
             setWishList([...wishList, currentBook]);
-            alert(`${currentBook.bookName} is added to wish list!`);
+            toast.success(`${currentBook.bookName} is added to wish list!`);
         }
 
         console.log(currentBook, readList, "book");
