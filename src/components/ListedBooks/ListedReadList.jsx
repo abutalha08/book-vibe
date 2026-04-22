@@ -1,14 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LibraryContext } from "../../Context/BookContext";
 import { MdLocationOn } from "react-icons/md";
 import { FaBookOpen, FaRegFileAlt, FaRegUser } from "react-icons/fa";
 import { Link } from "react-router";
 
-const ListedReadList = () => {
+const ListedReadList = ({ sortingType }) => {
     const { readList } = useContext(LibraryContext);
     // console.log(readList);
 
-    if (readList.length === 0) {
+    const [filteredReadList, setFilteredReadList] = useState([]);
+
+    useEffect(() => {
+        if (!readList) return;
+
+        let updatedList = [...readList];
+
+        if (sortingType === "pages") {
+            updatedList.sort((a, b) => a.totalPages - b.totalPages);
+        }
+        else if (sortingType === "rating") {
+            updatedList.sort((a, b) => a.rating - b.rating);
+        }
+
+        setFilteredReadList(updatedList);
+    }, [sortingType, readList]);
+
+    if (!filteredReadList || filteredReadList.length === 0) {
         return (
             <div className="flex items-center justify-center min-h-[70vh] px-4">
                 <div
@@ -64,7 +81,7 @@ const ListedReadList = () => {
     return (
         <div>
             <div className="space-y-3">
-                {readList.map((book) => (
+                {filteredReadList.map((book) => (
                     <div
                         key={book.bookId}
                         className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition mt-8 p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 items-start"
