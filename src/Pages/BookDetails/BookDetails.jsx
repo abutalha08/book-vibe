@@ -96,35 +96,38 @@ const BookDetails = () => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex gap-4 mt-6">
+                    <div className="flex flex-col sm:flex-row gap-4 mt-6">
+
+                        {/* Mark as Read */}
                         <button
                             onClick={() => handleMarkAsRead(expectedBook)}
-                            className={`px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer
-    ${readList.some((b) => b.bookId === expectedBook.bookId)
+                            className={`w-full sm:w-auto px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer text-center
+      ${readList.some((b) => b.bookId === expectedBook.bookId)
                                     ? "bg-indigo-600 text-white hover:bg-indigo-700"
                                     : "border border-gray-400 hover:bg-gray-100"
                                 }
-  `}
+    `}
                         >
                             {readList.some((b) => b.bookId === expectedBook.bookId)
                                 ? "Marked as Read"
                                 : "Mark as Read"}
                         </button>
+
+                        {/* Wishlist */}
                         <button
                             onClick={() => handleWishList(expectedBook)}
-                            className={`px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer
-                           ${wishList.some(
-                                (b) => b.bookId === expectedBook.bookId,
-                            )
+                            className={`w-full sm:w-auto px-6 py-2 rounded-lg transition shadow-md hover:shadow-lg cursor-pointer text-center
+      ${wishList.some((b) => b.bookId === expectedBook.bookId)
                                     ? "bg-green-500 text-white"
                                     : "bg-blue-500 text-white hover:bg-blue-600"
                                 }
-  `}
+    `}
                         >
                             {wishList.some((b) => b.bookId === expectedBook.bookId)
                                 ? "Added to Wishlist"
-                                : "Wishlist"}
+                                : "Add to Wishlist"}
                         </button>
+
                     </div>
                 </div>
             </div>
