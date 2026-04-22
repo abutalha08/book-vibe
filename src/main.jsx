@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <BookContext>
 
       <RouterProvider router={router}></RouterProvider>
-      <ToastContainer position='top-center' />
+      <ToastContainer/>
 
     </BookContext>
   </StrictMode>,
