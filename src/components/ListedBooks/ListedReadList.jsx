@@ -44,7 +44,7 @@ const ListedReadList = () => {
                         className="
             mt-6
             inline-flex items-center justify-center  
-            bg-green-500 hover:bg-green-600
+            bg-indigo-600 hover:bg-indigo-700
             text-white
             px-6 py-2.5
             rounded-full
@@ -135,7 +135,7 @@ const ListedReadList = () => {
                                     </span>
                                 </div>
 
-                                <button className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-full text-sm transition flex items-center justify-center  gap-1 cursor-pointer">
+                                <button className="bg-indigo-600 text-white hover:bg-indigo-700 px-5 py-2 rounded-full text-sm transition flex items-center justify-center  gap-1 cursor-pointer">
                                     View Details
                                 </button>
                             </div>
